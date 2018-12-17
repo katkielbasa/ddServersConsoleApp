@@ -3,9 +3,10 @@ package org.katkielbasa.dimensiondatasimpleapp.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 @NamedQueries({
     @NamedQuery(
@@ -18,7 +19,7 @@ import javax.persistence.Table;
         query = "select count(*) from Server"
         ),
     @NamedQuery(
-            name = "findAllServer",
+            name = "findAllServers",
             query = "from Server"
             )
 })
@@ -27,8 +28,8 @@ import javax.persistence.Table;
 public class Server {
 
 	@Id
-	@Column(name = "id", nullable = false)
-	private String id;
+	@Column(name = "id", nullable = false, unique=true)
+	private int id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -36,11 +37,11 @@ public class Server {
 	public Server() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

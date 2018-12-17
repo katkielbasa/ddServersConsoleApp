@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+ <server>
+  <id>1013</id>
+  <name>server1</name>
+ </server>
+ <server>
+  <id>2312312</id>
+  <name>server2</name>
+ </server>
+ <server>
+  <id>123123123</id>
+  <name>server3</name>
+ </server>
+</servers>

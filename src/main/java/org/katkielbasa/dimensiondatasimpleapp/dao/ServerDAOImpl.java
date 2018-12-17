@@ -1,7 +1,9 @@
 package org.katkielbasa.dimensiondatasimpleapp.dao;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.apache.logging.log4j.LogManager;
@@ -31,51 +33,38 @@ public class ServerDAOImpl implements ServerDAO {
     }   
 
 	@Override
-	public Server findServerById(String id) {
+	public Server findServerById(int id) {
 		log.info("Looking for server with id: " + id); 
         TypedQuery<Server> query = sessionFactory.getCurrentSession().getNamedQuery("findServerById");  
-
         query.setParameter("id", id);
-
         Server server = query.getSingleResult();
         log.info("Returned server with id:{} and name{}", server.getId(), server.getName()); 
-
-       return server;
-
+        return server;
 	}
 	
-
 	@Override
-	public void updateServer(Server server) {
-		log.info("updating server with a name: {} and id: {} ", server.getName(), server.getId()); 
-
+	public void updateServer(Server server) throws SQLIntegrityConstraintViolationException, NoResultException, IllegalStateException{
 		sessionFactory.getCurrentSession().update(server);
-		log.info("server with new a name: {} and new id: {} updated: ", server.getName(),server.getId()); 
+		log.info("server with new a name: {} and id: {} updated: ", server.getName(),server.getId()); 
 
 	}
 	@Override
 	public void deleteServer(Server server) {
-
 		sessionFactory.getCurrentSession().delete(server);
 		log.info("server with a name: {} and id: {} deleted: ", server.getName(),server.getId()); 
-
 	}
 
 	@Override
 	public List<Server> listAllServers() {
-  
-		List<Server> servers= (List<Server>) sessionFactory.getCurrentSession().getNamedQuery("findAllServers").getResultList();
-		
+		List<Server> resultList = (List<Server>) sessionFactory.getCurrentSession().getNamedQuery("findAllServers").getResultList();
+		List<Server> servers= resultList;
 		return servers;
 	}
 
 	@Override
 	public Long countAllServers() {
 		Long numberOfServers = (Long) sessionFactory.getCurrentSession().getNamedQuery("countAllServers").uniqueResult();
-		log.info("There is {} record in server database ", numberOfServers); 
-
 		return  numberOfServers;
-			//createQuery("select count(*) from Server").uniqueResult();
 	}
 
 
