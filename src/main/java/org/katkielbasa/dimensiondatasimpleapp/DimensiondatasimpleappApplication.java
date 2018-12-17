@@ -64,7 +64,7 @@ public class DimensiondatasimpleappApplication implements CommandLineRunner {
 				exit(0);
 			} else if (option.equals("countServers")) {
 				Long servNumb = serService.countAllServers();
-				console.writer().printf("The number of servers is {} .", servNumb);
+				console.writer().printf("The number of servers is "+ servNumb + ". ");
 			} else if (option.equalsIgnoreCase("addServer")) {
 				Server server = new Server();
 				askForUserInput("Please provide server id: ");

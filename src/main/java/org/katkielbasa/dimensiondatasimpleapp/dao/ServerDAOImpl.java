@@ -64,6 +64,7 @@ public class ServerDAOImpl implements ServerDAO {
 	@Override
 	public Long countAllServers() {
 		Long numberOfServers = (Long) sessionFactory.getCurrentSession().getNamedQuery("countAllServers").uniqueResult();
+		log.info("There is {} record in server database ", numberOfServers); 
 		return  numberOfServers;
 	}
 
