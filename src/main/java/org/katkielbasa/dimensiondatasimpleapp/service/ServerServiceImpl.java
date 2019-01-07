@@ -1,9 +1,6 @@
 package org.katkielbasa.dimensiondatasimpleapp.service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-
-import javax.persistence.NoResultException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,8 +16,6 @@ public class ServerServiceImpl implements ServerService{
 	@Autowired
 	private ServerDAO serverDAO;
 	
-	static Logger log = LogManager.getLogger(ServerServiceImpl.class);
-
 	
 	@Override
 	@Transactional
@@ -30,7 +25,7 @@ public class ServerServiceImpl implements ServerService{
 
 	@Override
 	@Transactional
-	public void updateServer(Server server) throws SQLIntegrityConstraintViolationException, NoResultException {
+	public void updateServer(Server server) {
 		serverDAO.updateServer(server);
 	}
 	

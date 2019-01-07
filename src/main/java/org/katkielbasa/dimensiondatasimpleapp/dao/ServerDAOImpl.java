@@ -1,6 +1,5 @@
 package org.katkielbasa.dimensiondatasimpleapp.dao;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -33,9 +32,10 @@ public class ServerDAOImpl implements ServerDAO {
     }   
 
 	@Override
-	public Server findServerById(int id) {
+	public Server findServerById(int id){
 		log.info("Looking for server with id: " + id); 
-        TypedQuery<Server> query = sessionFactory.getCurrentSession().getNamedQuery("findServerById");  
+        TypedQuery<Server> query;
+        query = sessionFactory.getCurrentSession().getNamedQuery("findServerById");  
         query.setParameter("id", id);
         Server server = query.getSingleResult();
         log.info("Returned server with id:{} and name{}", server.getId(), server.getName()); 
@@ -43,7 +43,7 @@ public class ServerDAOImpl implements ServerDAO {
 	}
 	
 	@Override
-	public void updateServer(Server server) throws SQLIntegrityConstraintViolationException, NoResultException, IllegalStateException{
+	public void updateServer(Server server){
 		sessionFactory.getCurrentSession().update(server);
 		log.info("server with new a name: {} and id: {} updated: ", server.getName(),server.getId()); 
 
@@ -56,7 +56,7 @@ public class ServerDAOImpl implements ServerDAO {
 
 	@Override
 	public List<Server> listAllServers() {
-		List<Server> resultList = (List<Server>) sessionFactory.getCurrentSession().getNamedQuery("findAllServers").getResultList();
+		List<Server> resultList = (List<Server>)sessionFactory.getCurrentSession().getNamedQuery("findAllServers").getResultList();
 		List<Server> servers= resultList;
 		return servers;
 	}
@@ -64,7 +64,6 @@ public class ServerDAOImpl implements ServerDAO {
 	@Override
 	public Long countAllServers() {
 		Long numberOfServers = (Long) sessionFactory.getCurrentSession().getNamedQuery("countAllServers").uniqueResult();
-		log.info("There is {} record in server database ", numberOfServers); 
 		return  numberOfServers;
 	}
 
