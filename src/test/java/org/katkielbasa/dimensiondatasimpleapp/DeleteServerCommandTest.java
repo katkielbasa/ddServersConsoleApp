@@ -1,6 +1,5 @@
 package org.katkielbasa.dimensiondatasimpleapp;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -9,7 +8,6 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.katkielbasa.dimensiondatasimpleapp.dao.IdNotRecognisedException;
 import org.katkielbasa.dimensiondatasimpleapp.model.Server;
 import org.katkielbasa.dimensiondatasimpleapp.service.ServerService;
 import org.katkielbasa.dimensiondatasimpleapp.service.ServerServiceImpl;
@@ -28,7 +26,7 @@ public class DeleteServerCommandTest {
 	DeleteServerCommand dsc;
 
 	@Test
-	public void testRun() throws IdNotRecognisedException {
+	public void testRun() {
 		// given
 		Server server = new Server();
 		server.setId(1);
