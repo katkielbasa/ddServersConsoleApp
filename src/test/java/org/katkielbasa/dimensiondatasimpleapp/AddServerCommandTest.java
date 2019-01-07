@@ -38,7 +38,6 @@ public class AddServerCommandTest {
 		asc.run("", "1", "server");
 
 		// then
-		//verify(serverService, times(1)).persistServer(server.getId());
 		assertEquals(server.getId(), 1);
 		assertEquals(server.getName(),"server");
 

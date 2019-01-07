@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
@@ -54,11 +53,5 @@ public class Server {
 		this.name = name;
 	}
 	
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (!(obj instanceof Server)) return false;
-//		return EqualsBuilder.reflectionEquals(this,obj);
-//	}
-
 
 }
